@@ -1,0 +1,11 @@
+### Alle Tasks holen (GET)
+GET http://localhost:8080/api/tasks
+
+### Task hinzufügen (POST)
+POST http://localhost:8080/api/tasks
+Content-Type: text/plain
+
+Einkaufen
+
+### Task löschen (DELETE)
+DELETE http://localhost:8080/api/tasks/0
