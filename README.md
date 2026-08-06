@@ -2,54 +2,85 @@
 
 ## Projektübersicht
 
-Dieses Repository enthält eine funktionsfähige Spring-Boot-Anwendung mit einer REST-API zur Verwaltung von Aufgaben. Der Fokus liegt auf Continuous Integration und Continuous Deployment (CI/CD) mit GitHub Actions, Docker und Docker Hub.
+Dieses Repository enthält eine Spring-Boot-Anwendung mit einer REST-API zur Verwaltung von Aufgaben.
 
-Das Projekt dient als praktisches Beispiel für einen vollständigen DevOps-Workflow:
+Der Schwerpunkt des Projekts liegt auf der Umsetzung einer vollständigen CI/CD-Pipeline mit GitHub Actions, Docker und Docker Compose.
 
-* Lokale Entwicklung mit Git und GitHub
-* Automatisierte Builds und Tests mit GitHub Actions
-* Docker-Containerisierung der Anwendung
-* Veröffentlichung des Docker Images auf Docker Hub
-* Einfache Nutzung über Docker Desktop
+## Technologien
+
+- Java 21
+- Spring Boot
+- Apache Maven
+- Git
+- GitHub
+- GitHub Actions
+- Docker
+- Docker Compose
+- Docker Hub
 
 ---
 
-## Technologie-Stack
-
-* Programmiersprache: Java 21
-* Framework: Spring Boot
-* Build-Tool: Apache Maven
-* Versionsverwaltung: Git & GitHub
-* CI/CD: GitHub Actions
-* Containerisierung: Docker
-* Container Registry: Docker Hub
-
-Docker Hub Repository:
-
-nouamanamri/devops-student-api
-
-GitHub Repository:
+## GitHub Repository
 
 https://github.com/amri81/devops-student-api
 
+## Docker Hub Repository
+
+nouamanamri/devops-student-api
+
 ---
 
-## Lokale Entwicklung
+# Projektstruktur
 
-Repository klonen:
+```
+.
+├── .github/workflows/github-ci.yml
+├── src/
+├── Dockerfile
+├── compose.yaml
+├── pom.xml
+└── README.md
+```
+
+---
+
+# CI/CD Pipeline
+
+Bei jedem Push oder Pull Request auf den **main**-Branch führt GitHub Actions automatisch folgende Schritte aus:
+
+1. Repository auschecken
+2. Java 21 installieren
+3. Maven-Abhängigkeiten laden
+4. Automatisierte Tests ausführen
+5. Spring-Boot-Anwendung bauen
+6. Docker-Image erstellen
+7. Docker Compose validieren
+8. Anwendung mit Docker Compose starten
+9. REST-API testen
+10. Laufende Container anzeigen
+11. Docker-Umgebung wieder stoppen
+
+Dadurch wird sichergestellt, dass jede Änderung automatisch überprüft wird.
+
+---
+
+# Anwendung lokal starten
+
+Repository klonen
 
 ```bash
 git clone https://github.com/amri81/devops-student-api.git
+
 cd devops-student-api
 ```
 
-Build durchführen:
+Projekt bauen
 
 ```bash
-.\mvnw.cmd clean package
+./mvnw clean package
 ```
 
-Anwendung starten:
+Anwendung starten
 
 ```bash
 java -jar target/demo-0.0.1-SNAPSHOT.jar
@@ -57,40 +88,60 @@ java -jar target/demo-0.0.1-SNAPSHOT.jar
 
 ---
 
-## Docker
+# Docker
 
-Docker Image bauen:
+Docker Image erstellen
 
 ```bash
 docker build -t devops-student-api:latest .
 ```
 
-Container starten:
+Container starten
 
 ```bash
-docker run -p 8080:8080 --name devops-student-api devops-student-api:latest
-```
-
-Docker Hub Image herunterladen:
-
-```bash
-docker pull nouamanamri/devops-student-api:latest
-```
-
-Docker Container starten:
-
-```bash
-docker run -p 8080:8080 --name devops-student-api nouamanamri/devops-student-api:latest
+docker run -p 8080:8080 devops-student-api:latest
 ```
 
 ---
 
-## Projekt
+# Docker Compose
 
-DevOps Student API
+Container starten
 
-Erstellt von:
+```bash
+docker compose up -d
+```
 
-* Nouaman Amri
+Container anzeigen
+
+```bash
+docker compose ps
+```
+
+Container stoppen
+
+```bash
+docker compose down
+```
+
+---
+
+# REST API
+
+Beispiel
+
+```
+GET http://localhost:8080/api/tasks
+```
+
+---
+
+# Autor
+
+**Nouaman Amri**
+
+Frankfurt University of Applied Sciences
+
+Modul: DevOps
 
 Jahr: 2026
