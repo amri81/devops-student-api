@@ -1,0 +1,20 @@
+services:
+  devops-student-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: devops-student-api:latest
+    container_name: devops-student-api
+
+    ports:
+      - "8080:8080"
+
+    restart: unless-stopped
+
+    networks:
+      - devops-network
+
+networks:
+  devops-network:
+    driver: bridge
