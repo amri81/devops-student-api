@@ -1,15 +1,12 @@
-
 name: Maven CI
 
 on:
   push:
     branches:
       - main
-
   pull_request:
     branches:
       - main
-
   workflow_dispatch:
 
 jobs:
@@ -28,10 +25,10 @@ jobs:
           cache: maven
 
       - name: Run automated tests
-        run: ./mvnw -B test
+        run: mvn -B test
 
       - name: Build application with Maven
-        run: ./mvnw -B clean package
+        run: mvn -B clean package
 
       - name: Build Docker image
         run: docker build -t devops-student-api:latest .
