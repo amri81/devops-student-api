@@ -1,5 +1,4 @@
 name: Maven CI
-
 on:
   push:
     branches:
@@ -35,3 +34,9 @@ jobs:
 
       - name: Validate Docker Compose configuration
         run: docker compose config
+
+      - name: Start application with Docker Compose
+        run: docker compose up -d
+
+      - name: Show running containers
+        run: docker compose ps
