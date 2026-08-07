@@ -269,8 +269,10 @@ Empfohlene Screenshots:
 
 **Nouaman Amri**
 
-Frankfurt University of Applied Sciences
+Technische Hochschule Mittelhessen (THM)
 
-Modul: DevOps
+Campus Friedberg
+
+Modul: Software Development and Operations
 
 Jahr: 2026
