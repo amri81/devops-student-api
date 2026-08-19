@@ -1,11 +1,20 @@
-### Alle DevOps-Aufgaben anzeigen (GET)
+### Alle Aufgaben
 GET http://localhost:8080/api/tasks
 
-### Neue DevOps-Aufgabe hinzufügen (POST)
+###
+
+### Aufgabe hinzufügen
 POST http://localhost:8080/api/tasks
 Content-Type: text/plain
 
-Docker Compose konfigurieren
+Docker Compose mit PostgreSQL
 
-### DevOps-Aufgabe löschen (DELETE)
-DELETE http://localhost:8080/api/tasks/0
+###
+
+### Alle Aufgaben erneut anzeigen
+GET http://localhost:8080/api/tasks
+
+###
+
+### Aufgabe löschen
+DELETE http://localhost:8080/api/tasks/1

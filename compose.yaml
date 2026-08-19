@@ -3,18 +3,46 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-
     image: devops-student-api:latest
-    container_name: devops-student-api
-
+    container_name: devops-student-apidocker
     ports:
       - "8080:8080"
-
     restart: unless-stopped
+    networks:
+      - devops-network
 
+  postgres:
+    image: postgres:16
+    container_name: devops-postgres
+    environment:
+      POSTGRES_DB: devopsdb
+      POSTGRES_USER: devopsuser
+      POSTGRES_PASSWORD: devopspassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - devops-network
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    ports:
+      - "9000:9000"
+      - "9443:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
+    restart: unless-stopped
     networks:
       - devops-network
 
 networks:
   devops-network:
     driver: bridge
+
+volumes:
+  portainer-data:
+  postgres-data:
