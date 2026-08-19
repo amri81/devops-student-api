@@ -276,3 +276,18 @@ Campus Friedberg
 Modul: Software Development and Operations
 
 Jahr: 2026
+
+## DevOps-Umgebung
+
+Das Projekt verwendet folgende Komponenten:
+
+- Spring Boot REST API
+- Maven für Build und Tests
+- PostgreSQL für persistente Datenspeicherung
+- Docker zur Containerisierung
+- Docker Compose zur Orchestrierung der Services
+- Portainer zur Verwaltung und Überwachung der Container
+- GitHub Actions für die CI/CD-Pipeline
+
+Die Anwendung ist über Port 8080 erreichbar.
+PostgreSQL läuft innerhalb der Docker-Compose-Umgebung.
