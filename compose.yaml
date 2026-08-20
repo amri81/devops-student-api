@@ -1,3 +1,5 @@
+name: devops-task-api-main
+
 services:
 
   devops-student-api:
