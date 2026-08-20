@@ -1,4 +1,5 @@
 services:
+
   devops-student-api:
     build:
       context: .
@@ -39,6 +40,21 @@ services:
     networks:
       - devops-network
 
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    ports:
+      - "9001:9000"
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-extensions:/opt/sonarqube/extensions
+      - sonarqube-logs:/opt/sonarqube/logs
+    restart: unless-stopped
+    networks:
+      - devops-network
+
 networks:
   devops-network:
     driver: bridge
@@ -46,3 +62,6 @@ networks:
 volumes:
   portainer-data:
   postgres-data:
+  sonarqube-data:
+  sonarqube-extensions:
+  sonarqube-logs:

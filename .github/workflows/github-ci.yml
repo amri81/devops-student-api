@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -10,6 +10,7 @@ on:
 
 jobs:
   build-test-docker:
+    name: Build, Test & Docker
     runs-on: ubuntu-latest
 
     steps:
@@ -44,10 +45,50 @@ jobs:
       - name: REST API testen
         run: curl --fail http://localhost:8080/api/tasks
 
+      - name: Docker Image speichern
+        run: docker save devops-student-api:latest -o devops-student-api.tar
+
+      - name: Docker Image als Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: devops-student-api-image
+          path: devops-student-api.tar
+          retention-days: 1
+
       - name: Logs bei Fehler anzeigen
         if: failure()
         run: docker compose logs
 
-      - name: Docker Umgebung stoppen
+      - name: CI Docker Umgebung stoppen
         if: always()
         run: docker compose down
+
+  deploy:
+    name: Deployment mit Docker Compose
+    needs: build-test-docker
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    runs-on:
+      - self-hosted
+      - Windows
+      - X64
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Docker Image herunterladen
+        uses: actions/download-artifact@v4
+        with:
+          name: devops-student-api-image
+          path: .
+
+      - name: Docker Image laden
+        run: docker load -i devops-student-api.tar
+
+      - name: Anwendung automatisch deployen
+        run: docker compose up -d --no-build
+
+      - name: Deployment prüfen
+        run: docker compose ps
