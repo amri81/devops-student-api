@@ -1112,3 +1112,4 @@ Campus Friedberg
 
 **Modul:** Software Development and Operations  
 **Jahr:** 2026
+ CI/CD Demo
