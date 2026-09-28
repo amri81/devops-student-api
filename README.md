@@ -1112,6 +1112,6 @@ Campus Friedberg
 
 **Modul:** Software Development and Operations  
 **Jahr:** 2026
+CI \CD-pipeline
 
-
-CI\CD Live Demo
+Demo live 
